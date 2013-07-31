@@ -1,0 +1,30 @@
+{
+  "name": "bigint-browserify",
+  "version": "0.0.0",
+  "description": "bigint api for browser javascript",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zaach/bigint-browserify.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "keywords": [
+    "biginteger",
+    "browser",
+    "browserify",
+    "bignumber",
+    "jsbn",
+    "bigint"
+  ],
+  "author": "Zach Carter",
+  "license": "APL 2.0",
+  "dependencies": {
+    "jsbn": "0.0.0"
+  },
+  "devDependencies": {
+    "bigint": "~0.4.2",
+    "tape": "~1.0.4"
+  }
+}
