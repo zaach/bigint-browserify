@@ -1,6 +1,6 @@
 {
   "name": "bigint-browserify",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "bigint api for browser javascript",
   "repository": {
     "type": "git",
