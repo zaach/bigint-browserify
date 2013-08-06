@@ -25,10 +25,8 @@ BigInt.prototype = {
     return this._jsbn.bitLength();
   },
   toBuffer: function() {
-    var ba = this._jsbn.toByteArray();
-    // jsbn byte arrays has a zereod byte on front (always?)
-    ba.shift();
-    return new Buffer(ba);
+    var hex = this._jsbn.toString(16);
+    return new Buffer(hex, 'hex');
   },
   toString: function(base) {
     return this._jsbn.toString(base);
