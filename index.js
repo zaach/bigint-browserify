@@ -21,6 +21,26 @@ BigInt.prototype = {
     if (!b._jsbn) b = new BigInt(b);
     return fromJsbn(this._jsbn.modPow(a._jsbn, b._jsbn));
   },
+  eq: function(a) {
+    if (!a._jsbn) a = new BigInt(a);
+    return this._jsbn.equals(a._jsbn);
+  },
+  cmp: function(a) {
+    if (!a._jsbn) a = new BigInt(a);
+    return this._jsbn.compareTo(a._jsbn);
+  },
+  gt: function(a) {
+    return this.cmp(a) > 0;
+  },
+  ge: function(a) {
+    return this.cmp(a) >= 0;
+  },
+  lt: function(a) {
+    return this.cmp(a) < 0;
+  },
+  le: function(a) {
+    return this.cmp(a) <= 0;
+  },
   bitLength: function() {
     return this._jsbn.bitLength();
   },

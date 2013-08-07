@@ -19,6 +19,8 @@ function assertSame(name, fn) {
   })
 }
 
+// operations
+
 ['add', 'sub', 'mul', 'mod', 'xor', 'powm']
 .forEach(function(name) {
   assertSame(name, function(bigint, cb) {
@@ -35,6 +37,32 @@ function assertSame(name, fn) {
     cb(null, bigint[name](ba, bb, bc).toString(16));
   });
 });
+
+
+// comparisons
+
+assertSame('eq', function(bigint, cb) {
+  var ba = bigint(a, 16);
+  var bb = bigint(b, 16);
+  cb(null, ba.eq(bb) && ba.eq(ba));
+});
+
+['cmp', 'gt', 'ge', 'lt', 'le']
+.forEach(function(name) {
+  assertSame(name, function(bigint, cb) {
+    var ba = bigint(a, 16);
+    var bb = bigint(b, 16);
+    cb(null, ba[name](bb) && bb[name](ba) && ba[name](ba));
+  });
+
+  assertSame('bigint.' + name, function(bigint, cb) {
+    var ba = bigint(a, 16);
+    var bb = bigint(b, 16);
+    cb(null, bigint[name](ba, bb) && bigint[name](bb, ba) && bigint[name](ba, ba));
+  });
+});
+
+// misc
 
 assertSame('bitLength', function(bigint, cb) {
   var ba = bigint(a, 16);
