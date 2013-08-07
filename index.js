@@ -46,6 +46,7 @@ BigInt.prototype = {
   },
   toBuffer: function() {
     var hex = this._jsbn.toString(16);
+    if (hex.length % 2) hex = '0' + hex;
     return new Buffer(hex, 'hex');
   },
   toString: function(base) {
