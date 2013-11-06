@@ -19,6 +19,13 @@ function assertSame(name, fn) {
   })
 }
 
+// basic
+
+test('implicit base', function(t) {
+  t.ok(bigintB(0));
+  t.end();
+});
+
 // operations
 
 ['add', 'sub', 'mul', 'mod', 'xor', 'powm']

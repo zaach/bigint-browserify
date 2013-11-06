@@ -6,7 +6,7 @@ var bigint = module.exports = function(int, base) {
 };
 
 function BigInt(str, base) {
-  this._jsbn = new jsbn(str, base);
+  this._jsbn = new jsbn(str, base || 10);
 }
 
 function fromJsbn(n) {
