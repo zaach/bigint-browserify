@@ -2,20 +2,23 @@ var jsbn = require('jsbn');
 var Buffer = require('buffer').Buffer;
 
 var bigint = module.exports = function(int, base) {
-  return new BigInt(int, base);
+  var n = new BigNum(int, base);
+  n.constructor = BigNum;
+  return n;
 };
 
-function BigInt(str, base) {
+function BigNum(str, base) {
   this._jsbn = new jsbn(str, base || 10);
 }
 
 function fromJsbn(n) {
-  var bi = new BigInt();
+  var bi = new BigNum(0);
   bi._jsbn = n;
+  bi.constructor = BigNum;
   return bi;
 }
 
-BigInt.prototype = {
+BigNum.prototype = {
   powm: function(a, b) {
     if (!a._jsbn) a = new BigInt(a);
     if (!b._jsbn) b = new BigInt(b);
@@ -63,17 +66,17 @@ var binOps = {
 };
 
 Object.keys(binOps).forEach(function(op) {
-  BigInt.prototype[op] = function (a) {
-    if (!a._jsbn) a = new BigInt(a);
+  BigNum.prototype[op] = function (a) {
+    if (!a._jsbn) a = new BigNum(a);
     return fromJsbn(this._jsbn[binOps[op]](a._jsbn));
   };
 });
 
 bigint.fromBuffer = function(buffer) {
-  return new BigInt(buffer.toString('hex'), 16);
+  return new BigNum(buffer.toString('hex'), 16);
 };
 
-Object.keys(BigInt.prototype).forEach(function (name) {
+Object.keys(BigNum.prototype).forEach(function (name) {
     if (name === 'inspect' || name === 'toString') return;
 
     bigint[name] = function (num) {
@@ -83,7 +86,7 @@ Object.keys(BigInt.prototype).forEach(function (name) {
             return num[name].apply(num, args);
         }
         else {
-            var bigi = new BigInt(num);
+            var bigi = new BigNum(num);
             return bigi[name].apply(bigi, args);
         }
     };
