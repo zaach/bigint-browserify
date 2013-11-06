@@ -73,7 +73,9 @@ Object.keys(binOps).forEach(function(op) {
 });
 
 bigint.fromBuffer = function(buffer) {
-  return new BigNum(buffer.toString('hex'), 16);
+  var n = new BigNum(buffer.toString('hex'), 16);
+  n.constructor = BigNum;
+  return n;
 };
 
 Object.keys(BigNum.prototype).forEach(function (name) {
