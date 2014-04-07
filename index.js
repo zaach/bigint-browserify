@@ -24,6 +24,10 @@ BigNum.prototype = {
     if (!b._jsbn) b = new BigInt(b);
     return fromJsbn(this._jsbn.modPow(a._jsbn, b._jsbn));
   },
+  invertm: function(a) {
+    if (!a._jsbn) a = new BigInt(a);
+    return fromJsbn(this._jsbn.modInverse(a._jsbn));
+  },
   eq: function(a) {
     if (!a._jsbn) a = new BigInt(a);
     return this._jsbn.equals(a._jsbn);
