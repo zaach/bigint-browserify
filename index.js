@@ -61,8 +61,10 @@ var binOps = {
   add: 'add',
   sub: 'subtract',
   mul: 'multiply',
+  div: 'divide',
   mod: 'mod',
-  xor: 'xor'
+  xor: 'xor',
+  and: 'and'
 };
 
 Object.keys(binOps).forEach(function(op) {
