@@ -62,6 +62,7 @@ var binOps = {
   sub: 'subtract',
   mul: 'multiply',
   mod: 'mod',
+  pow: 'pow',
   xor: 'xor'
 };
 
